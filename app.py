@@ -100,7 +100,7 @@ def resolve_item(restaurante_slug, nombre_contiene):
 # ---------------------------------------------------------------------------
 _OFERTAS_CONFIG = [
     {"restaurante": "la-frankeria", "nombre_contiene": "Classic Cheese Burger", "descuento_pct": 15, "etiqueta": "Combo Clásico"},
-    {"restaurante": "el-azteca", "nombre_contiene": "Súper Discada", "descuento_pct": 10, "etiqueta": "Para compartir"},
+    {"restaurante": "el-azteca", "nombre_contiene": "Tacos Mixtos", "descuento_pct": 10, "etiqueta": "Para compartir"},
     {"restaurante": "club-de-golf", "nombre_contiene": "Menú Nº3", "descuento_pct": 12, "etiqueta": "Especial del día"},
     {"restaurante": "la-frankeria", "nombre_contiene": "Cheezy Nachos de Pollo", "descuento_pct": 10, "etiqueta": "Antojo de fin de semana"},
 ]
@@ -111,6 +111,28 @@ for cfg in _OFERTAS_CONFIG:
     if item:
         precio_oferta = round(item["precio"] * (1 - cfg["descuento_pct"] / 100), 2)
         OFERTAS.append({**cfg, "item": item, "precio_oferta": precio_oferta})
+
+# Promociones especiales de La Frankería (packs, no productos individuales)
+# Se muestran como tarjetas informativas — no se agregan al carrito porque
+# son promos que el cliente coordina directamente con el restaurante al pasar.
+PROMOS_ESPECIALES = [
+    {
+        "id": "promo-pack-sabado",
+        "titulo": "Pack del Sábado",
+        "descripcion": "Promoción especial válida solamente los sábados.",
+        "restaurante": "La Frankería",
+        "restaurante_slug": "la-frankeria",
+        "etiqueta": "Solo sábados",
+    },
+    {
+        "id": "promo-weekend-pack",
+        "titulo": "Weekend Pack",
+        "descripcion": "Combo especial disponible viernes y sábado.",
+        "restaurante": "La Frankería",
+        "restaurante_slug": "la-frankeria",
+        "etiqueta": "Viernes y sábado",
+    },
+]
 
 _RECOMENDADOS_CONFIG = [
     ("club-de-golf", "Menú Nº4"),
@@ -421,7 +443,7 @@ def create_order(user_id, items, total, metodo_pago, telefono, direccion):
 @app.route("/")
 def index():
     restaurantes = [{"slug": r["slug"], "nombre": r["nombre"], "eslogan": r["eslogan"]} for r in MENUS.values()]
-    return render_template("index.html", restaurantes=restaurantes, ofertas=OFERTAS[:3], recomendados=get_recomendados(n=4))
+    return render_template("index.html", restaurantes=restaurantes, ofertas=OFERTAS[:3], recomendados=get_recomendados(n=4), promos=PROMOS_ESPECIALES)
 
 
 @app.route("/dashboard")

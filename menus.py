@@ -55,21 +55,12 @@ MENUS = {
                 ],
             },
             {
-                "titulo": "Especialidades",
-                "platos": [
-                    {"nombre": "Súper Discada para Compartir", "descripcion": "2 a 3 personas, incluye 12 tortillas para hacer tacos", "precio": 26.00},
-                    {"nombre": "Discada Gratinada", "descripcion": "2 a 3 personas, incluye 12 tortillas para hacer tacos", "precio": 28.00},
-                    {"nombre": "Orden de Carne Asada", "descripcion": "Acompañada de cebolla asada, chorizo y quesadilla", "precio": 10.00},
-                ],
-            },
-            {
                 "titulo": "Tacos",
                 "platos": [
                     {"nombre": "(4) Tacos del Azteca con queso", "descripcion": "Tacos de carne asada (tortilla maíz o harina)", "precio": 8.00},
                     {"nombre": "(4) Tacos del Azteca sin queso", "descripcion": "Tacos de carne asada (tortilla maíz o harina)", "precio": 9.00},
                     {"nombre": "(4) Tacos de Pollo Sultán con queso", "descripcion": "Deliciosos tacos hechos con el famoso pollo de la Sultana del Norte", "precio": 8.00},
                     {"nombre": "(4) Tacos de Pollo Sultán sin queso", "descripcion": "Deliciosos tacos hechos con el famoso pollo de la Sultana del Norte", "precio": 9.00},
-                    {"nombre": "Pirata (Burrito)", "descripcion": "Taco gigante en tortilla de harina con carne asada y queso", "precio": 9.00},
                     {"nombre": "(4) Tacos de Discada Norteña con queso", "descripcion": "Mezcla de carnes y chorizos, asados en el disco de rastra de campo", "precio": 8.00},
                     {"nombre": "(4) Tacos de Trompo", "descripcion": "Estilo Monterrey, carne de cerdo marinada", "precio": 9.00},
                     {"nombre": "(4) Tacos Mixtos", "descripcion": "Orden mixta de carne asada, pollo sultán, discada norteña y chilorio con queso", "precio": 9.00},

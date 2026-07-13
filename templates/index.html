@@ -5,7 +5,7 @@
 <div class="hero">
   <div class="auth-eyebrow">Pide y pasa a buscar · Azuero</div>
   <h1>Arma tu pedido, paga y pasa a buscarlo listo.</h1>
-  <p>Explora los menús de Club de Golf, El Azteca y La Frankería. Ordena desde tu celular, paga en efectivo o por Yappy y pasa a recoger sin filas ni esperas.</p>
+  <p>Explora los menús de los mejores restaurantes de Azuero. Ordena desde tu celular, paga en efectivo o por Yappy y pasa a recoger sin filas ni esperas.</p>
   <a class="btn-gold" href="#restaurantes">Explorar restaurantes</a>
 </div>
 
@@ -44,8 +44,35 @@
       <span class="go">→</span>
     </a>
     {% endfor %}
+    <div class="r-card r-card-coming">
+      <div class="tag tag-coming">Próximamente</div>
+      <h2>¿Tu restaurante aquí?</h2>
+      <p>Estamos sumando nuevos locales de Azuero a la plataforma.</p>
+      <span class="go go-coming">+</span>
+    </div>
   </div>
 </div>
+
+{% if promos %}
+<div class="section-block">
+  <div class="head"><h2>Promociones especiales</h2></div>
+  <div class="promo-grid">
+    {% for p in promos %}
+    <div class="promo-card">
+      <img src="{{ url_for('static', filename='img/productos/' + p.id + '.jpg') }}" alt="{{ p.titulo }}">
+      <div class="promo-body">
+        <div class="promo-tag">{{ p.etiqueta }}</div>
+        <h3>{{ p.titulo }}</h3>
+        <div class="promo-desc">{{ p.descripcion }}</div>
+        <div class="promo-restaurante">
+          <a href="{{ url_for('restaurant', slug=p.restaurante_slug) }}">Ver menú de {{ p.restaurante }} →</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
 
 {% if recomendados %}
 <div class="section-block">

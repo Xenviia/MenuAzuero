@@ -188,6 +188,16 @@ main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 2rem 1.
 }
 .r-card:hover .go { transform: translateX(2px); }
 
+.r-card-coming {
+  background: var(--surface-2); cursor: default;
+  border-style: dashed;
+}
+.r-card-coming:hover { transform: none; box-shadow: var(--shadow); }
+.r-card-coming h2 { color: var(--muted); }
+.r-card-coming p { color: var(--muted); }
+.tag-coming { background: var(--accent-blue) !important; }
+.go-coming { background: var(--surface-2) !important; color: var(--muted) !important; }
+
 /* PRODUCT CARDS */
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
 .product-card {
@@ -246,6 +256,34 @@ main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 2rem 1.
   border-radius: 6px; z-index: 2;
   transform: rotate(-4deg);
 }
+
+/* PROMO CARDS (packs de promocion, no productos individuales) */
+.promo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.1rem; }
+.promo-card {
+  background: var(--accent-green); border: 2px solid var(--ink);
+  border-radius: var(--radius); overflow: hidden;
+  display: flex; box-shadow: var(--shadow); transition: transform .12s;
+}
+.promo-card:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-lg); }
+.promo-card img {
+  width: 140px; height: auto; object-fit: cover;
+  border-right: 2px solid var(--ink); flex-shrink: 0;
+  align-self: stretch;
+}
+.promo-body { padding: 1rem 1.1rem; display: flex; flex-direction: column; flex: 1; }
+.promo-tag {
+  font-size: 0.66rem; font-weight: 700; color: var(--ink);
+  background: #fff5b0; padding: 3px 8px; border: 1.5px solid var(--ink);
+  border-radius: 5px; display: inline-block; align-self: flex-start;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.promo-body h3 { font-size: 1.15rem; margin: 0.5rem 0 0.3rem; font-weight: 700; }
+.promo-desc { font-size: 0.85rem; color: var(--ink); flex: 1; margin-bottom: 0.7rem; font-weight: 500; opacity: 0.85; }
+.promo-restaurante a {
+  font-size: 0.82rem; color: var(--ink); text-decoration: none;
+  font-weight: 700; border-bottom: 2px solid var(--ink); padding-bottom: 1px;
+}
+.promo-restaurante a:hover { color: var(--primary-dark); border-color: var(--primary-dark); }
 
 /* OFFERS */
 .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.1rem; }
