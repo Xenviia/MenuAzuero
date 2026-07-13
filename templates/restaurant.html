@@ -5,7 +5,9 @@
 <a class="back-link" href="{{ url_for('index') }}">← Volver a restaurantes</a>
 
 <div class="menu-header" style="border-bottom:none; margin-bottom:1rem;">
-  <img src="{{ restaurant_image(r.slug) }}" alt="{{ r.nombre }}" style="width:100%; max-height:220px; object-fit:cover; border-radius:14px; border:1px solid var(--panel-line); margin:0.8rem 0 1.2rem;">
+  <div class="restaurant-banner">
+    <img src="{{ restaurant_image(r.slug) }}" alt="{{ r.nombre }}">
+</div>
   <h1>{{ r.nombre }}</h1>
   <div class="eslogan">{{ r.eslogan }}</div>
   {% if r.contacto %}<div class="contacto">{{ r.contacto }}</div>{% endif %}
