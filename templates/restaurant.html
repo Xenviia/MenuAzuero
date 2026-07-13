@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ r.nombre }} · Menú Azuero{% endblock %}
+{% block content %}
+
+<a class="back-link" href="{{ url_for('index') }}">← Volver a restaurantes</a>
+
+<div class="menu-header" style="border-bottom:none; margin-bottom:1rem;">
+  <img src="{{ restaurant_image(r.slug) }}" alt="{{ r.nombre }}" style="width:100%; max-height:220px; object-fit:cover; border-radius:14px; border:1px solid var(--panel-line); margin:0.8rem 0 1.2rem;">
+  <h1>{{ r.nombre }}</h1>
+  <div class="eslogan">{{ r.eslogan }}</div>
+  {% if r.contacto %}<div class="contacto">{{ r.contacto }}</div>{% endif %}
+</div>
+
+{% for sec in r.secciones %}
+  <div class="section-title">{{ sec.titulo }}</div>
+  <div class="product-grid">
+    {% for item in sec.platos %}
+    <div class="product-card">
+      <img src="{{ product_image(item.id) }}" alt="{{ item.nombre }}">
+      <div class="body">
+        <h3>{{ item.nombre }}</h3>
+        {% if item.descripcion %}<div class="desc">{{ item.descripcion }}</div>{% endif %}
+        <div class="row-bottom">
+          <div class="price">${{ "%.2f"|format(item.precio) }}</div>
+          {% if current_user %}
+          <form class="add-form" method="POST" action="{{ url_for('carrito_agregar') }}">
+            <input type="hidden" name="item_id" value="{{ item.id }}">
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="number" name="cantidad" value="1" min="1">
+            <button class="add-btn" type="submit">Agregar</button>
+          </form>
+          {% else %}
+          <a class="add-btn" style="text-decoration:none;" href="{{ url_for('login', next=request.path) }}">Agregar</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+{% endblock %}

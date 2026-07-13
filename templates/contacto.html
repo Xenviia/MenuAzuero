@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Contacto · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Contacto</div>
+  <h1>Escríbenos</h1>
+</div>
+
+<div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:1.6rem; align-items:start;">
+  <div class="form-card">
+    {% if enviado %}
+      <div class="msg ok">¡Gracias! Recibimos tu mensaje y te responderemos pronto.</div>
+    {% endif %}
+    {% if error %}
+      <div class="msg error">{{ error }}</div>
+    {% endif %}
+    <form method="POST" action="{{ url_for('contacto') }}">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" name="mensaje" rows="5" required
+        style="width:100%; margin-top:0.35rem; padding:0.7rem 0.85rem; background:#14110c; border:1px solid var(--panel-line); border-radius:8px; color:var(--cream); font-family:'Work Sans',sans-serif; resize:vertical;"></textarea>
+
+      <button type="submit" class="btn-primary">Enviar mensaje</button>
+    </form>
+  </div>
+
+  <div>
+    <img src="{{ url_for('static', filename='img/placeholder-restaurante.svg') }}" alt="Foto de contacto / local"
+      style="width:100%; border-radius:14px; border:1px solid var(--panel-line); margin-bottom:1rem;">
+    <div class="form-card">
+      <div class="cat" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold); text-transform:uppercase;">Información</div>
+      <p style="margin:0.6rem 0; color:var(--cream-dim); font-size:0.9rem;">📍 Azuero, Panamá</p>
+      <p style="margin:0.6rem 0; color:var(--cream-dim); font-size:0.9rem;">✉️ Escríbenos con el formulario y te respondemos.</p>
+      <p style="margin:0.6rem 0; color:var(--cream-dim); font-size:0.9rem;">🕐 Horario de atención: 11:00 a.m. – 9:00 p.m.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

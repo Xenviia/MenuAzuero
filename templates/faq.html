@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Preguntas frecuentes · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Ayuda</div>
+  <h1>Preguntas frecuentes</h1>
+</div>
+
+<div class="form-card" style="max-width:720px;">
+  {% for pregunta, respuesta in faqs %}
+  <div class="faq-item">
+    <h3>{{ pregunta }}</h3>
+    <p>{{ respuesta }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<p style="margin-top:1.4rem; color:var(--cream-dim); font-size:0.9rem;">
+  ¿No encontraste tu respuesta? <a href="{{ url_for('contacto') }}" style="color:var(--gold-bright);">Escríbenos</a>.
+</p>
+
+{% endblock %}

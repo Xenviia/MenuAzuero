@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Menú Azuero — Pide de tus restaurantes favoritos{% endblock %}
+{% block content %}
+
+<div class="hero">
+  <div class="auth-eyebrow">Pide y pasa a buscar · Azuero</div>
+  <h1>Arma tu pedido, paga y pasa a buscarlo listo.</h1>
+  <p>Explora los menús de Club de Golf, El Azteca y La Frankería. Ordena desde tu celular, paga en efectivo o por Yappy y pasa a recoger sin filas ni esperas.</p>
+  <a class="btn-gold" href="#restaurantes">Explorar restaurantes</a>
+</div>
+
+{% if ofertas %}
+<div class="section-block">
+  <div class="head">
+    <h2>Ofertas de hoy</h2>
+    <a class="see-all" href="{{ url_for('ofertas') }}">Ver todas →</a>
+  </div>
+  <div class="offers-grid">
+    {% for o in ofertas %}
+    <div class="oferta-card">
+      <img src="{{ product_image(o.item.id) }}" alt="{{ o.item.nombre }}">
+      <div>
+        <div class="etiqueta">{{ o.etiqueta }} · -{{ o.descuento_pct }}%</div>
+        <h3>{{ o.item.nombre }}</h3>
+        <div class="precios">
+          <span class="old">${{ "%.2f"|format(o.item.precio) }}</span>
+          <span class="new">${{ "%.2f"|format(o.precio_oferta) }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="section-block" id="restaurantes">
+  <div class="head"><h2>Restaurantes</h2></div>
+  <div class="restaurant-grid">
+    {% for r in restaurantes %}
+    <a class="r-card" href="{{ url_for('restaurant', slug=r.slug) }}">
+      <div class="tag">Restaurante</div>
+      <h2>{{ r.nombre }}</h2>
+      <p>{{ r.eslogan }}</p>
+      <span class="go">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% if recomendados %}
+<div class="section-block">
+  <div class="head"><h2>Recomendados</h2></div>
+  <div class="product-grid">
+    {% for item in recomendados %}
+    <div class="product-card">
+      <img src="{{ product_image(item.id) }}" alt="{{ item.nombre }}">
+      <div class="body">
+        <div class="cat">{{ item.restaurante_nombre }}</div>
+        <h3>{{ item.nombre }}</h3>
+        <div class="desc">{{ item.descripcion }}</div>
+        <div class="row-bottom">
+          <div class="price">${{ "%.2f"|format(item.precio) }}</div>
+          {% if current_user %}
+          <form class="add-form" method="POST" action="{{ url_for('carrito_agregar') }}">
+            <input type="hidden" name="item_id" value="{{ item.id }}">
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="number" name="cantidad" value="1" min="1">
+            <button class="add-btn" type="submit">Agregar</button>
+          </form>
+          {% else %}
+          <a class="add-btn" style="text-decoration:none;" href="{{ url_for('login', next=request.path) }}">Agregar</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

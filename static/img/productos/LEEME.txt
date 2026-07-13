@@ -1,0 +1,21 @@
+Pon aquí las fotos de los platos.
+
+El nombre del archivo debe ser exactamente el "id" del producto + su extensión
+(.jpg, .jpeg, .png o .webp). Ejemplos de ids reales del catálogo:
+
+  club-de-golf-menu-no1.jpg
+  club-de-golf-menu-no2.jpg
+  club-de-golf-menu-no3.jpg
+  club-de-golf-menu-no4.jpg
+  el-azteca-nachos-azteca.jpg
+  el-azteca-queso-fundido.jpg
+  la-frankeria-super-burra-papas-fritas.jpg
+
+¿Cómo saber el id exacto de cada producto? Corre esto desde la carpeta del
+proyecto para listarlos todos:
+
+  python3 -c "import app; [print(k) for k in app.ITEM_INDEX]"
+
+No necesitas tocar ningún código: apenas guardes la imagen con el nombre
+correcto en esta carpeta, aparecerá automáticamente en el sitio (si no existe
+el archivo, se muestra un cuadro gris de "Foto del producto" en su lugar).

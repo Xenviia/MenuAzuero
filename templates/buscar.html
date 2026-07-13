@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Buscar: {{ q }} · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Buscador</div>
+  <h1>{% if q %}Resultados para "{{ q }}"{% else %}¿Qué se te antoja?{% endif %}</h1>
+</div>
+
+{% if q and not resultados %}
+<div class="empty-state">
+  No encontramos platos que coincidan con "<strong>{{ q }}</strong>".
+  <br>Prueba con el nombre de un restaurante o un ingrediente, por ejemplo "pollo" o "hamburguesa".
+</div>
+{% elif not q %}
+<div class="empty-state">
+  Escribe en la barra de búsqueda el nombre de un plato, restaurante o ingrediente.
+</div>
+{% else %}
+<div class="product-grid">
+  {% for item in resultados %}
+  <div class="product-card">
+    <img src="{{ product_image(item.id) }}" alt="{{ item.nombre }}">
+    <div class="body">
+      <div class="cat">{{ item.restaurante_nombre }} · {{ item.seccion }}</div>
+      <h3>{{ item.nombre }}</h3>
+      <div class="desc">{{ item.descripcion }}</div>
+      <div class="row-bottom">
+        <div class="price">${{ "%.2f"|format(item.precio) }}</div>
+        {% if current_user %}
+        <form class="add-form" method="POST" action="{{ url_for('carrito_agregar') }}">
+          <input type="hidden" name="item_id" value="{{ item.id }}">
+          <input type="hidden" name="next" value="{{ request.full_path }}">
+          <input type="number" name="cantidad" value="1" min="1">
+          <button class="add-btn" type="submit">Agregar</button>
+        </form>
+        {% else %}
+        <a class="add-btn" style="text-decoration:none;" href="{{ url_for('login', next=request.path) }}">Agregar</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Finalizar pedido · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Paso 2 de 2</div>
+  <h1>Finalizar pedido</h1>
+</div>
+
+<div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.6rem; align-items:start;">
+  <div class="form-card">
+    {% if error %}<div class="msg error">{{ error }}</div>{% endif %}
+    <form method="POST" action="{{ url_for('checkout') }}">
+      <div class="form-grid">
+        <div class="full">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="full">
+          <label for="telefono">Teléfono / celular</label>
+          <input type="text" id="telefono" name="telefono" placeholder="6000-0000" required>
+        </div>
+      </div>
+
+      <label style="margin-top:1.4rem;">Método de pago</label>
+      <div class="pay-methods">
+        <label class="pay-option">
+          <input type="radio" name="metodo_pago" value="efectivo" required>
+          <div class="pay-card">
+            <div class="pay-icon">💵</div>
+            <div>
+              <div class="pay-title">Efectivo al recoger</div>
+              <div class="pay-desc">Pagas en efectivo cuando recojas tu pedido en el local.</div>
+            </div>
+          </div>
+        </label>
+
+        <label class="pay-option">
+          <input type="radio" name="metodo_pago" value="yappy" required>
+          <div class="pay-card">
+            <div class="pay-icon">📲</div>
+            <div>
+              <div class="pay-title">Yappy</div>
+              <div class="pay-desc">Envías el pago por Yappy al número del restaurante.</div>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Instrucciones de Yappy (se muestran solo si eligen Yappy) -->
+      <div id="yappy-info" class="yappy-box" style="display:none;">
+        <div class="yappy-head">Envía tu pago por Yappy a:</div>
+        {% for g in grupos %}
+        <div class="yappy-row">
+          <span>{{ g.nombre }} — <strong>{{ g.telefono }}</strong></span>
+          <span class="yappy-amount">${{ "%.2f"|format(g.subtotal) }}</span>
+        </div>
+        {% endfor %}
+        <div class="yappy-note">Realiza el pago y muestra tu comprobante al recoger el pedido.</div>
+      </div>
+
+      <button type="submit" class="btn-primary">Confirmar pedido · ${{ "%.2f"|format(total) }}</button>
+    </form>
+  </div>
+
+  <div class="order-summary-mini">
+    <div class="cat" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--gold); text-transform:uppercase; margin-bottom:0.6rem;">Resumen del pedido</div>
+    {% for row in items %}
+    <div class="row">
+      <span>{{ row.quantity }}× {{ row.item.nombre }}</span>
+      <span>${{ "%.2f"|format(row.subtotal) }}</span>
+    </div>
+    {% endfor %}
+    <div class="row total">
+      <span>Total</span>
+      <span>${{ "%.2f"|format(total) }}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var radios = document.querySelectorAll('input[name="metodo_pago"]');
+    var yappyInfo = document.getElementById('yappy-info');
+    var options = document.querySelectorAll('.pay-option');
+
+    function update() {
+      var val = null;
+      radios.forEach(function (r) { if (r.checked) val = r.value; });
+      yappyInfo.style.display = (val === 'yappy') ? 'block' : 'none';
+      options.forEach(function (opt) {
+        var input = opt.querySelector('input');
+        opt.classList.toggle('selected', input.checked);
+      });
+    }
+    radios.forEach(function (r) { r.addEventListener('change', update); });
+    update();
+  })();
+</script>
+
+{% endblock %}
