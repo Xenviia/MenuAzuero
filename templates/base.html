@@ -7,10 +7,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="navbar">
-    <a class="brand" href="{{ url_for('index') }}">
+  <a class="brand" href="{{ url_for('index') }}">
       <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Menú Azuero" class="brand-logo">
-      <small>Pide y pasa a buscar</small>
+      <span class="brand-text">Menú Azuero<small>Pide y pasa a buscar</small></span>
     </a>
 
     <form class="search-form" action="{{ url_for('buscar') }}" method="GET">
