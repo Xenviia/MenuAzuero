@@ -48,71 +48,41 @@ h1, h2, h3 {
 .brand {
   font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem;
   color: #fff5b0; text-decoration: none; margin-right: auto; line-height: 1.05;
-  display: flex; flex-direction: column; letter-spacing: 0.02em;
-  text-transform: uppercase;
+  display: flex; flex-direction: row; align-items: center; gap: 0.7rem;
+  letter-spacing: 0.02em; text-transform: uppercase;
+}
+.brand-logo {
+  height: 42px; width: auto; display: block; flex-shrink: 0;
+  border-radius: 6px;
+}
+.brand-text {
+  display: flex; flex-direction: column; line-height: 1.05;
 }
 .brand small {
   font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.62rem;
   color: var(--primary); letter-spacing: 0.15em; margin-top: 3px;
   text-transform: uppercase;
 }
+
 .search-form {
-    display: flex;
-    align-items: center;
-    gap: 8px;                   /* separación entre input y botón */
-
-    background: #fff5b0;
-    border: 2px solid #fff5b0;
-    border-radius: 14px;
-
-    padding: 6px 8px 6px 14px;
-
-    min-width: 220px;
-    max-width: 420px;
-    flex: 1;
-
-    transition: .2s ease;
+  display: flex; align-items: center; background: #fff5b0; border: 2px solid #fff5b0;
+  border-radius: var(--radius-sm); padding: 0.28rem 0.28rem 0.28rem 0.9rem;
+  min-width: 200px; flex: 1; max-width: 360px;
+  transition: border-color .15s;
 }
-
-.search-form:focus-within {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(255,165,0,.15);
-}
-
+.search-form:focus-within { border-color: var(--primary); }
 .search-form input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-
-    color: var(--ink);
-    font-size: .95rem;
-    font-weight: 500;
+  background: none; border: none; outline: none; color: var(--ink);
+  font-family: inherit; font-size: 0.9rem; font-weight: 500; width: 100%;
 }
-
+.search-form input::placeholder { color: #5a5a5a; }
 .search-form button {
-    width: 38px;
-    height: 38px;
-
-    border: none;
-    border-radius: 10px;
-
-    background: var(--ink);
-    color: #fff5b0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    transition: .2s;
+  background: var(--ink); color: #fff5b0; border: none; border-radius: 6px;
+  width: 30px; height: 30px; cursor: pointer; font-size: 0.95rem; font-weight: 700;
+  flex-shrink: 0; transition: background .15s;
 }
+.search-form button:hover { background: var(--primary); color: var(--ink); }
 
-.search-form button:hover {
-    background: var(--primary);
-    color: var(--ink);
-    transform: scale(1.05);
-}
 .navbar-links { display: flex; gap: 1.1rem; font-size: 0.86rem; font-weight: 500; }
 .navbar-links a { color: #fff5b0; text-decoration: none; transition: color .15s; }
 .navbar-links a:hover { color: var(--primary); }
@@ -234,67 +204,6 @@ main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 2rem 1.
 .r-card-coming p { color: var(--muted); }
 .tag-coming { background: var(--accent-blue) !important; }
 .go-coming { background: var(--surface-2) !important; color: var(--muted) !important; }
-
-.restaurant-hero{
-    position:relative;
-    margin-bottom:70px;
-}
-
-.hero-banner{
-    width:100%;
-    height:300px;
-
-    object-fit:cover;
-
-    border-radius:20px;
-    border:1px solid var(--panel-line);
-
-    display:block;
-}
-
-.hero-logo{
-
-    position:absolute;
-
-    left:50%;
-    bottom:-55px;
-
-    transform:translateX(-50%);
-
-    width:110px;
-    height:110px;
-
-    border-radius:50%;
-
-    background:#fff;
-
-    padding:6px;
-
-    border:4px solid #fff;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.25);
-}
-
-.hero-logo img{
-
-    width:100%;
-    height:100%;
-
-    border-radius:50%;
-
-    object-fit:cover;
-}
-
-.menu-header{
-
-    text-align:center;
-}
-
-.menu-header h1{
-
-    margin-top:0;
-    margin-bottom:.4rem;
-}
 
 /* PRODUCT CARDS */
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
