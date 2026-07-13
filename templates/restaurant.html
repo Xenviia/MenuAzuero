@@ -4,13 +4,33 @@
 
 <a class="back-link" href="{{ url_for('index') }}">← Volver a restaurantes</a>
 
-<div class="menu-header" style="border-bottom:none; margin-bottom:1rem;">
-  <div class="restaurant-banner">
-    <img src="{{ restaurant_image(r.slug) }}" alt="{{ r.nombre }}">
+<div class="restaurant-hero">
+
+    <img class="hero-banner"
+         src="{{ restaurant_banner(r.slug) }}"
+         alt="{{ r.nombre }}">
+
+    <div class="hero-logo">
+        <img src="{{ restaurant_image(r.slug) }}"
+             alt="{{ r.nombre }}">
+    </div>
+
 </div>
-  <h1>{{ r.nombre }}</h1>
-  <div class="eslogan">{{ r.eslogan }}</div>
-  {% if r.contacto %}<div class="contacto">{{ r.contacto }}</div>{% endif %}
+
+<div class="menu-header">
+
+    <h1>{{ r.nombre }}</h1>
+
+    <div class="eslogan">
+        {{ r.eslogan }}
+    </div>
+
+    {% if r.contacto %}
+    <div class="contacto">
+        {{ r.contacto }}
+    </div>
+    {% endif %}
+
 </div>
 
 {% for sec in r.secciones %}

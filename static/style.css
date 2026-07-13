@@ -235,26 +235,67 @@ main { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 2rem 1.
 .tag-coming { background: var(--accent-blue) !important; }
 .go-coming { background: var(--surface-2) !important; color: var(--muted) !important; }
 
-.restaurant-banner{
+.restaurant-hero{
+    position:relative;
+    margin-bottom:70px;
+}
+
+.hero-banner{
     width:100%;
-    height:280px;
-    background:#111;
+    height:300px;
+
+    object-fit:cover;
+
+    border-radius:20px;
     border:1px solid var(--panel-line);
-    border-radius:14px;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    overflow:hidden;
-    margin:.8rem 0 1.2rem;
+    display:block;
 }
 
-.restaurant-banner img{
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
+.hero-logo{
+
+    position:absolute;
+
+    left:50%;
+    bottom:-55px;
+
+    transform:translateX(-50%);
+
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    padding:6px;
+
+    border:4px solid #fff;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
+
+.hero-logo img{
+
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
+
+    object-fit:cover;
+}
+
+.menu-header{
+
+    text-align:center;
+}
+
+.menu-header h1{
+
+    margin-top:0;
+    margin-bottom:.4rem;
+}
+
 /* PRODUCT CARDS */
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
 .product-card {
