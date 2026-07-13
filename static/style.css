@@ -46,59 +46,15 @@ h1, h2, h3 {
   border-bottom: 2px solid var(--ink); flex-wrap: wrap;
 }
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    color: #fff5b0;
-    text-decoration: none;
-    margin-right: auto;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem;
+  color: #fff5b0; text-decoration: none; margin-right: auto; line-height: 1.05;
+  display: flex; flex-direction: column; letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
-  
 .brand small {
   font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.62rem;
   color: var(--primary); letter-spacing: 0.15em; margin-top: 3px;
   text-transform: uppercase;
-}
-
-.brand img{
-
-    width:52px;
-    height:52px;
-
-    object-fit:contain;
-
-    flex-shrink:0;
-}
-
-.brand-text{
-    display:flex;
-    flex-direction:column;
-    line-height:1.05;
-}
-
-.brand-text span{
-
-    font-family:'Space Grotesk',sans-serif;
-
-    font-size:1.35rem;
-
-    font-weight:700;
-
-    letter-spacing:.02em;
-
-    color:#fff5b0;
-}
-
-.brand-text small{
-
-    color:var(--primary);
-
-    font-size:.72rem;
-
-    letter-spacing:.15em;
-
-    text-transform:uppercase;
 }
 .search-form {
     display: flex;

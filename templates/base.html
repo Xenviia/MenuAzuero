@@ -7,16 +7,9 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <a class="brand" href="{{ url_for('index') }}">
-    <img class="brand-logo"
-         src="{{ url_for('static', filename='img/logo.png') }}"
-         alt="Menú Azuero">
+  <div class="navbar">
+    <a class="brand" href="{{ url_for('index') }}">Menú Azuero<small>Pide y pasa a buscar</small></a>
 
-    <div class="brand-text">
-        <span>Menú Azuero</span>
-        <small>Pide y pasa a buscar</small>
-    </div>
-</a>
     <form class="search-form" action="{{ url_for('buscar') }}" method="GET">
       <input type="text" name="q" placeholder="Buscar platos, restaurantes..." value="{{ request.args.get('q','') }}">
       <button type="submit" aria-label="Buscar">→</button>
