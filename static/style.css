@@ -65,23 +65,62 @@ h1, h2, h3 {
 }
 
 .search-form {
-  display: flex; align-items: center; background: #fff5b0; border: 2px solid #fff5b0;
-  border-radius: var(--radius-sm); padding: 0.28rem 0.28rem 0.28rem 0.9rem;
-  min-width: 200px; flex: 1; max-width: 360px;
-  transition: border-color .15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;                   /* separación entre input y botón */
+
+    background: #fff5b0;
+    border: 2px solid #fff5b0;
+    border-radius: 14px;
+
+    padding: 6px 8px 6px 14px;
+
+    min-width: 220px;
+    max-width: 420px;
+    flex: 1;
+
+    transition: .2s ease;
 }
-.search-form:focus-within { border-color: var(--primary); }
+
+.search-form:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(255,165,0,.15);
+}
+
 .search-form input {
-  background: none; border: none; outline: none; color: var(--ink);
-  font-family: inherit; font-size: 0.9rem; font-weight: 500; width: 100%;
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+
+    color: var(--ink);
+    font-size: .95rem;
+    font-weight: 500;
 }
-.search-form input::placeholder { color: #5a5a5a; }
+
 .search-form button {
-  background: var(--ink); color: #fff5b0; border: none; border-radius: 6px;
-  width: 30px; height: 30px; cursor: pointer; font-size: 0.95rem; font-weight: 700;
-  flex-shrink: 0; transition: background .15s;
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--ink);
+    color: #fff5b0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: .2s;
 }
-.search-form button:hover { background: var(--primary); color: var(--ink); }
+
+.search-form button:hover {
+    background: var(--primary);
+    color: var(--ink);
+    transform: scale(1.05);
+}
 
 .navbar-links { display: flex; gap: 1.1rem; font-size: 0.86rem; font-weight: 500; }
 .navbar-links a { color: #fff5b0; text-decoration: none; transition: color .15s; }
