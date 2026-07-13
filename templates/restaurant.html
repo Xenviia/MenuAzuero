@@ -7,16 +7,15 @@
 <div class="restaurant-hero">
 
     <img class="hero-banner"
-         src="{{ url_for('static', filename='img/restaurantes/' ~ r.slug ~ '_banner.jpg') }}"
+         src="{{ restaurant_banner(r.slug) }}"
          alt="{{ r.nombre }}">
 
     <div class="hero-logo">
-        <img src="{{ url_for('static', filename='img/restaurantes/' ~ r.slug ~ '_logo.jpg') }}"
+        <img src="{{ restaurant_image(r.slug) }}"
              alt="{{ r.nombre }}">
     </div>
 
 </div>
-
 
 <div class="menu-header">
 

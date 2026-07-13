@@ -46,11 +46,15 @@ h1, h2, h3 {
   border-bottom: 2px solid var(--ink); flex-wrap: wrap;
 }
 .brand {
-  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem;
-  color: #fff5b0; text-decoration: none; margin-right: auto; line-height: 1.05;
-  display: flex; flex-direction: column; letter-spacing: 0.02em;
-  text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #fff5b0;
+    text-decoration: none;
+    margin-right: auto;
 }
+  
 .brand small {
   font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.62rem;
   color: var(--primary); letter-spacing: 0.15em; margin-top: 3px;
@@ -68,9 +72,9 @@ h1, h2, h3 {
 }
 
 .brand-text{
-
     display:flex;
     flex-direction:column;
+    line-height:1.05;
 }
 
 .brand-text span{
