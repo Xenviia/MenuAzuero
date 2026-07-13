@@ -1,0 +1,12 @@
+Pon aquí la foto/banner de cada restaurante (la que se ve arriba del menú).
+
+Nombra el archivo exactamente igual al "slug" del restaurante + extensión
+(.jpg, .jpeg, .png o .webp):
+
+  club-de-golf.jpg
+  el-azteca.jpg
+  la-frankeria.jpg
+
+Igual que con los productos: no necesitas tocar código, solo guarda el
+archivo con ese nombre en esta carpeta y aparecerá automáticamente. Si no
+existe, se muestra un banner gris de "Foto del restaurante".

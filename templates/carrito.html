@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Carrito · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Paso 1 de 2</div>
+  <h1>Tu carrito</h1>
+</div>
+
+{% if not items %}
+  <div class="empty-state">
+    Tu carrito está vacío. <a href="{{ url_for('index') }}">Explora los restaurantes →</a>
+  </div>
+{% else %}
+<table class="cart-table">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Subtotal</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in items %}
+    <tr>
+      <td>
+        <div class="cart-row-name">{{ row.item.nombre }}</div>
+        <div class="cart-row-sub">{{ row.item.restaurante_nombre }} · ${{ "%.2f"|format(row.item.precio) }} c/u</div>
+      </td>
+      <td>
+        <form class="qty-form" method="POST" action="{{ url_for('carrito_actualizar', cart_id=row.cart_id) }}">
+          <input type="number" name="cantidad" value="{{ row.quantity }}" min="0">
+          <button type="submit" class="btn-ghost" style="padding:0.3rem 0.6rem;">Actualizar</button>
+        </form>
+      </td>
+      <td>${{ "%.2f"|format(row.subtotal) }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('carrito_eliminar', cart_id=row.cart_id) }}">
+          <button type="submit" class="link-remove">Quitar</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="cart-summary">
+  <div>Total</div>
+  <div class="total">${{ "%.2f"|format(total) }}</div>
+  <a class="btn-gold" href="{{ url_for('checkout') }}">Ir a pagar →</a>
+</div>
+{% endif %}
+
+{% if recomendados %}
+<div class="section-block" style="margin-top:2.6rem;">
+  <div class="head"><h2>También te podría gustar</h2></div>
+  <div class="product-grid">
+    {% for item in recomendados %}
+    <div class="product-card">
+      <img src="{{ product_image(item.id) }}" alt="{{ item.nombre }}">
+      <div class="body">
+        <div class="cat">{{ item.restaurante_nombre }}</div>
+        <h3>{{ item.nombre }}</h3>
+        <div class="desc">{{ item.descripcion }}</div>
+        <div class="row-bottom">
+          <div class="price">${{ "%.2f"|format(item.precio) }}</div>
+          <form class="add-form" method="POST" action="{{ url_for('carrito_agregar') }}">
+            <input type="hidden" name="item_id" value="{{ item.id }}">
+            <input type="hidden" name="next" value="{{ url_for('carrito') }}">
+            <input type="number" name="cantidad" value="1" min="1">
+            <button class="add-btn" type="submit">Agregar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

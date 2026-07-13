@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Ofertas y promociones · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Promociones</div>
+  <h1>Ofertas de la semana</h1>
+</div>
+
+{% if not ofertas %}
+  <div class="empty-state">No hay ofertas activas por el momento.</div>
+{% else %}
+<div class="offers-grid">
+  {% for o in ofertas %}
+  <div class="oferta-card">
+    <img src="{{ product_image(o.item.id) }}" alt="{{ o.item.nombre }}">
+    <div style="flex:1;">
+      <div class="etiqueta">{{ o.etiqueta }} · -{{ o.descuento_pct }}%</div>
+      <h3>{{ o.item.nombre }}</h3>
+      <div class="cat" style="font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--cream-dim); text-transform:uppercase; margin-bottom:0.4rem;">{{ o.item.restaurante_nombre }}</div>
+      <div class="precios">
+        <span class="old">${{ "%.2f"|format(o.item.precio) }}</span>
+        <span class="new">${{ "%.2f"|format(o.precio_oferta) }}</span>
+      </div>
+      {% if current_user %}
+      <form class="add-form" method="POST" action="{{ url_for('carrito_agregar') }}" style="margin-top:0.7rem;">
+        <input type="hidden" name="item_id" value="{{ o.item.id }}">
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <input type="number" name="cantidad" value="1" min="1">
+        <button class="add-btn" type="submit">Agregar</button>
+      </form>
+      {% else %}
+      <a class="add-btn" style="text-decoration:none; display:inline-block; margin-top:0.7rem;" href="{{ url_for('login', next=request.path) }}">Agregar</a>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

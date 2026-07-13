@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300">
+  <rect width="800" height="300" fill="#211c15"/>
+  <rect x="1" y="1" width="798" height="298" fill="none" stroke="#35301f" stroke-width="2" stroke-dasharray="8 8"/>
+  <g transform="translate(400,130)" fill="none" stroke="#5a5138" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-40" y="-24" width="80" height="56" rx="5"/>
+    <circle cx="0" cy="4" r="17"/>
+    <rect x="-13" y="-36" width="26" height="14" rx="2"/>
+  </g>
+  <text x="400" y="200" text-anchor="middle" fill="#b8ac95" font-family="Arial, sans-serif" font-size="16">
+    Foto del restaurante
+  </text>
+</svg>

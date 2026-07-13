@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Tecnología usada · Menú Azuero{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="eyebrow">Ficha técnica</div>
+  <h1>Software y tecnología utilizada</h1>
+</div>
+
+<ul class="tech-list">
+  <li><strong>Backend</strong>Python 3 + Flask (framework web ligero, ruteo y renderizado de plantillas)</li>
+  <li><strong>Base de datos</strong>SQLite (usuarios, sesiones, carrito, pedidos, mensajes de contacto)</li>
+  <li><strong>Seguridad de contraseñas</strong>bcrypt, hash + sal, costo 12</li>
+  <li><strong>Sesiones</strong>IDs generados con secrets.token_hex(32), cookies HttpOnly + Secure + SameSite=Lax, timeout de 15 min y rotación tras login</li>
+  <li><strong>Acceso con Google</strong>OAuth 2.0 / OpenID Connect con Authlib (opcional, además del correo y contraseña)</li>
+  <li><strong>Frontend</strong>Jinja2 (plantillas), HTML5, CSS3 (sin frameworks externos de UI)</li>
+  <li><strong>Tipografías</strong>Fraunces (display), Work Sans (texto), JetBrains Mono (datos/etiquetas)</li>
+  <li><strong>Pago</strong>Dos métodos: efectivo al llegar o Yappy (se muestra el número del restaurante y el monto a enviar)</li>
+  <li><strong>Hosting de desarrollo</strong>Servidor local Flask con HTTPS autofirmado (ssl_context="adhoc")</li>
+</ul>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Menú Azuero{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="navbar">
+    <a class="brand" href="{{ url_for('index') }}">Menú Azuero<small>Club de Golf · El Azteca · La Frankería</small></a>
+
+    <form class="search-form" action="{{ url_for('buscar') }}" method="GET">
+      <input type="text" name="q" placeholder="Buscar platos, restaurantes..." value="{{ request.args.get('q','') }}">
+      <button type="submit" aria-label="Buscar">→</button>
+    </form>
+
+    <div class="navbar-links">
+      <a href="{{ url_for('ofertas') }}">Ofertas</a>
+      <a href="{{ url_for('faq') }}">FAQ</a>
+      <a href="{{ url_for('contacto') }}">Contacto</a>
+    </div>
+
+    <div class="nav-right">
+      <a class="cart-link" href="{{ url_for('carrito') }}">
+        🛒 Carrito {% if cart_count and cart_count > 0 %}<span class="cart-badge">{{ cart_count }}</span>{% endif %}
+      </a>
+      {% if current_user %}
+        <form method="POST" action="{{ url_for('logout') }}" style="margin:0;">
+          <button type="submit" class="btn-ghost">Salir</button>
+        </form>
+      {% else %}
+        <a class="btn-ghost" href="{{ url_for('login') }}">Entrar</a>
+        <a class="btn-gold" href="{{ url_for('register') }}">Crear cuenta</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    Menú Azuero · proyecto académico UTP CRUTA · bcrypt(12) + sesiones seguras ·
+    <a href="{{ url_for('tecnologia') }}" style="color:var(--gold-bright); text-decoration:none;">Tecnología usada</a>
+  </footer>
+</body>
+</html>
