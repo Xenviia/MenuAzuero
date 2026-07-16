@@ -30,7 +30,7 @@ app.secret_key = os.environ.get("FLASK_SECRET_KEY", secrets.token_hex(32))
 
 DATABASE = "app.db"
 BCRYPT_COST = 12
-SESSION_TIMEOUT_MINUTES = 15
+SESSION_TIMEOUT_MINUTES = 1
 
 # --- Google OAuth (opcional) -----------------------------------------------
 # Para activarlo, exporta estas variables de entorno antes de correr la app:
